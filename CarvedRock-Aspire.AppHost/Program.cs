@@ -19,10 +19,9 @@ builder.AddProject<Projects.CarvedRock_WebApp>("webapp")
 
 var mcp = builder.AddProject<Projects.CarvedRock_McpServer>("mcp-server")
     .WithReference(api)
-    .WaitFor(api)
-    .WithHttpHealthCheck("/health");
+    .WaitFor(api);
 
-builder.AddMcpInspector("mcp-inspector")
-    .WithMcpServer(mcp, path: "/mcp");
+builder.AddMcpInspector("inspector")
+    .WithMcpServer(mcp);
 
 builder.Build().Run();
