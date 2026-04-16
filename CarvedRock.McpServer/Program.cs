@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
 builder.Services.AddMcpServer()
-    .WithHttpTransport(options =>options.Stateless=true )
+    .WithHttpTransport()
     .WithTools<CarvedRockTools>();
 
 builder.Services.AddHttpClient("CarvedRockApi", client =>
@@ -28,6 +28,6 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 app.UseCors("McpInspector");
 app.MapDefaultEndpoints();
-app.MapMcp();
+app.MapMcp("/mcp");
 
 app.Run();
